@@ -14,5 +14,22 @@
     <body>
         <p class="text-beautify">Hello World</p>
         <p class="text-beautify">My First Web Page!</p>
+        <p onclick="show()" id="myText" class="text-beautify">Hey Buddy! Click here!</p>
+        <script type="text/javascript">
+            var show = function(){
+            var txt = document.getElementById("myText"),
+            img = document.getElementById("image");
+            txt.innerHTML = "Happy Birthday! :D";
+            img.style.visibility = "visible";
+        }
+        </script>
+        <style type="text/css">
+        #image{
+            visibility: hidden;/* hide the image */
+            width: 100%; /* set width of image to 100% of body */
+            height: 50%; /* set height of image to 50% of body */
+        }
+        </style>
+        <iframe src="https://giphy.com/embed/3ohhwmQ0xIg8W3pHd6" width="480" height="456" frameBorder="0" class="giphy-embed" allowFullScreen id="image"></iframe><p><a href="https://giphy.com/gifs/happy-birthday-3ohhwmQ0xIg8W3pHd6"></a></p>
     </body>
 </html>
