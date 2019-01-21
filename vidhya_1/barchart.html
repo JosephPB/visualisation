@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html>
-<head>
-	<title>D3 Tutorial</title>
-	<! -- // place D3 script url in head -->
-	<script src="https://d3js.org/d3.v3.js"></script>
-</head>
-<body>
-<! --place information that we arw writing in javascript in the body -->
-<script type="text/javascript">
-//write javascript here
-d3.select("body").append("p").text("Our First Paragraph using D3!");
-// .select uses CSS selector syntax to add (append) a paragraph "p" to the <body> of the text
-d3.select("body").append("p").text("Our First Paragraph using D3!").style({"font-size":"40px", "font-family":"arial"});
-// the above were long chains of objects, but we can break them up
-var p = d3.select("body").append("p").text("Our First Paragraph using D3!"); 
-p.style({"font-size":"40px","font-family":"arial"});
-d3.select("body").append("p").text("So, now that we have applied various methods of prining statements we now get on to printing out the data");
-// binding elements to the DOM
-var data_values = [5,10,30,8,45,24,16,55,60,45,32,18,11,3];
-var p2 = d3.selectAll("p").data(data_values).enter().append("p").text(function(value){return value;});
-p2.style({"font-size":"20px", "font-family":"arial"});
-// drawing with D3
-var svg = d3.select("body").append("svg").attr({"width":450, "height":200});
-// .attr() adds attributes of the svg
-svg.append("circle").attr({"r":"30px", "cx":"50px", "cy":"50px"});
-svg.append("circle").attr({"r":"50px", "fill": "red" , "cx":"100px", "cy":"100px"});
-//drawing bar charts
-var svg2 = d3.select("body").append("svg").attr({"width":400, "heigh":200});
-var bars = svg2.append("rect").attr({"x":"30px", "y":"30px", "width":"30px", "height":"100px"});
-bars.attr("fill", "blue");
-// another svg environment
-var svg3 = d3.select("body").append("svg").attr({"width":500, "height":400});
-var bars_all = svg3.selectAll("rect").data(data_values).enter().append("rect").attr("width", "25px").attr("height", function(d){return d*5;});
-// so far this would only print out the 9 pars overlapping each other
-// we need to add an "x" attribute in order to space out the bars
-bars_all.attr("x", function(d,i){ return i*30; });
-// here the "i" is the index count of the bars. Multiplying this by 30 each time means that we have ebbently spaced bars. Since the width of ewach bar is set at 25, and we are multiplying by 30, we have a padding bwteeem each par of 5 pixels
-// all the bars are upside down due to the coordinate system. We can invert this by subtracting the the height of each bar form the total height of the svg call
-bars_all.attr("y", function(d){ return 400-d*5; });
-bars_all.attr("fill", "steelblue");
-// highlight min and max bars in chard
-var max = d3.max(data_values);
-var min = d3.min(data_values);
-bars_all.filter(function(d){ return d==max; }).attr("fill","green");
-bars_all.filter(function(d){ return d==min}).attr("fill", "red");
-</script>
-</body>
+	<head>
+		<title>D3 Tutorial</title>
+		<! -- // place D3 script url in head -->
+		<script src="https://d3js.org/d3.v3.js"></script>
+	</head>
+	<body>
+	<! --place information that we are writing in javascript in the body -->
+		<script type="text/javascript">
+			//write javascript here
+			d3.select("body").append("p").text("Our First Paragraph using D3!");
+			// .select uses CSS selector syntax to add (append) a paragraph "p" to the <body> of the text
+			d3.select("body").append("p").text("Our First Paragraph using D3!").style({"font-size":"40px", "font-family":"arial"});
+			// the above were long chains of objects, but we can break them up
+			var p = d3.select("body").append("p").text("Our First Paragraph using D3!"); 
+			p.style({"font-size":"40px","font-family":"arial"});
+			d3.select("body").append("p").text("So, now that we have applied various methods of prining statements we now get on to printing out the data");
+			// binding elements to the DOM
+			var data_values = [5,10,30,8,45,24,16,55,60,45,32,18,11,3];
+			var p2 = d3.selectAll("p").data(data_values).enter().append("p").text(function(value){return value;});
+			p2.style({"font-size":"20px", "font-family":"arial"});
+			// drawing with D3
+			var svg = d3.select("body").append("svg").attr({"width":450, "height":200});
+			// .attr() adds attributes of the svg
+			svg.append("circle").attr({"r":"30px", "cx":"50px", "cy":"50px"});
+			svg.append("circle").attr({"r":"50px", "fill": "red" , "cx":"100px", "cy":"100px"});
+			//drawing bar charts
+			var svg2 = d3.select("body").append("svg").attr({"width":400, "heigh":200});
+			var bars = svg2.append("rect").attr({"x":"30px", "y":"30px", "width":"30px", "height":"100px"});
+			bars.attr("fill", "blue");
+			// another svg environment
+			var svg3 = d3.select("body").append("svg").attr({"width":500, "height":400});
+			var bars_all = svg3.selectAll("rect").data(data_values).enter().append("rect").attr("width", "25px").attr("height", function(d){return d*5;});
+			// so far this would only print out the 9 pars overlapping each other
+			// we need to add an "x" attribute in order to space out the bars
+			bars_all.attr("x", function(d,i){ return i*30; });
+			// here the "i" is the index count of the bars. Multiplying this by 30 each time means that we have ebbently spaced bars. Since the width of ewach bar is set at 25, and we are multiplying by 30, we have a padding bwteeem each par of 5 pixels
+			// all the bars are upside down due to the coordinate system. We can invert this by subtracting the the height of each bar form the total height of the svg call
+			bars_all.attr("y", function(d){ return 400-d*5; });
+			bars_all.attr("fill", "steelblue");
+			// highlight min and max bars in chard
+			var max = d3.max(data_values);
+			var min = d3.min(data_values);
+			bars_all.filter(function(d){ return d==max; }).attr("fill","green");
+			bars_all.filter(function(d){ return d==min}).attr("fill", "red");
+		</script>
+	</body>
 </html>
